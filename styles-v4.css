@@ -1,0 +1,473 @@
+html:root {
+  --background: rgb(245, 247, 250);
+  --card-background: white;
+  --header-text: rgb(35, 45, 60);
+  --muted-text: rgb(95, 105, 120);
+  --accent: rgb(49, 97, 150);
+  --grid: rgb(224, 229, 235);
+  --info-bg: rgb(238, 244, 252);
+  --info-border: rgb(190, 210, 235);
+  --row-alt: rgb(248, 250, 253);
+  --table-header: rgb(232, 237, 244);
+  --field-background: white;
+  --button-background: rgb(239, 239, 239);
+  --tile-background: rgb(250, 252, 255);
+  color-scheme: light;
+}
+
+html[data-effective-theme="dark"],
+html.theme-dark {
+  --background: rgb(20, 24, 31);
+  --card-background: rgb(31, 37, 47);
+  --header-text: rgb(235, 239, 245);
+  --muted-text: rgb(180, 190, 204);
+  --accent: rgb(142, 188, 238);
+  --grid: rgb(70, 80, 96);
+  --info-bg: rgb(43, 57, 76);
+  --info-border: rgb(86, 111, 143);
+  --row-alt: rgb(38, 45, 57);
+  --table-header: rgb(50, 60, 76);
+  --field-background: rgb(24, 29, 37);
+  --button-background: rgb(43, 51, 65);
+  --tile-background: rgb(36, 43, 55);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; min-height: 100%; }
+
+body {
+  background: var(--background);
+  color: var(--header-text);
+  font-family: "Noto Sans Armenian", "Noto Sans", "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.app {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 18px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.title-block { flex: 1 1 420px; min-width: 260px; }
+.title-block h1 { margin: 0; font-size: 24px; font-weight: 700; }
+#subtitle { margin: 2px 0 0; color: var(--muted-text); font-size: 13px; }
+
+.header-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.theme-controls {
+  display: grid;
+  grid-template-columns: auto 115px;
+  gap: 8px;
+  align-items: center;
+}
+
+.theme-controls label,
+.mode-control label {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+select,
+textarea,
+button {
+  font-family: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+select {
+  height: 32px;
+  border: 1px solid rgb(170, 178, 188);
+  background: var(--field-background);
+  color: var(--header-text);
+  font: inherit;
+  font-size: 13px;
+  padding: 0 28px 0 8px;
+  border-radius: 2px;
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted-text) 50%), linear-gradient(135deg, var(--muted-text) 50%, transparent 50%);
+  background-position: calc(100% - 14px) 13px, calc(100% - 9px) 13px;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+.card {
+  background: var(--card-background);
+  border: 1px solid var(--grid);
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+.card h2 { font-size: 16px; margin: 0 0 12px; }
+
+.transliterator-controls {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) auto auto;
+  gap: 16px;
+  align-items: end;
+}
+
+.mode-control { display: grid; gap: 6px; }
+#modeSelect { width: 100%; min-width: 240px; }
+
+.button-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  min-width: 130px;
+}
+
+.control-button {
+  height: 32px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  background: var(--button-background);
+  color: var(--header-text);
+  border: 1px solid var(--grid);
+  border-radius: 2px;
+  padding: 0 12px;
+}
+
+.control-button.primary {
+  background: var(--info-bg);
+  color: var(--accent);
+  border-color: var(--info-border);
+}
+
+.instructions p,
+.notes p {
+  margin: 0;
+  color: var(--muted-text);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.text-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.textarea-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 520px;
+  margin-bottom: 0;
+}
+
+.textarea-card label {
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--header-text);
+}
+
+textarea {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 460px;
+  resize: vertical;
+  border: 1px solid var(--grid);
+  background: var(--field-background);
+  color: var(--header-text);
+  font-family: "Noto Sans Armenian", "Noto Sans", "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+  padding: 12px;
+  border-radius: 2px;
+}
+
+textarea::placeholder { color: var(--muted-text); opacity: 0.8; }
+
+.version-marker {
+  color: var(--muted-text);
+  font-size: 11px;
+  text-align: right;
+  margin-top: -4px;
+  padding-bottom: 8px;
+}
+
+/* Mobile and small-screen refinements. Desktop rules above are unchanged. */
+@media (max-width: 900px) {
+  body {
+    font-size: 16px;
+  }
+
+  .app {
+    width: 100%;
+    max-width: none;
+    padding: 14px;
+  }
+
+  .header {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .header-actions {
+    align-items: flex-start;
+  }
+
+  .theme-controls label,
+  .mode-control label,
+  .textarea-card label {
+    font-size: 14px;
+  }
+
+  select,
+  textarea,
+  button {
+    font-size: 16px;
+  }
+
+  select,
+  .control-button {
+    min-height: 44px;
+  }
+
+  .control-button {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .card {
+    padding: 13px;
+    margin-bottom: 12px;
+  }
+}
+
+/* Portrait phones: stack everything cleanly and make controls tap-friendly. */
+@media (max-width: 700px) and (orientation: portrait) {
+  .app {
+    padding: 12px;
+  }
+
+  .header {
+    flex-direction: column;
+    margin-bottom: 12px;
+  }
+
+  .title-block {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .title-block h1 {
+    font-size: 22px;
+    line-height: 1.15;
+  }
+
+  #subtitle {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .header-actions,
+  .theme-controls {
+    width: 100%;
+  }
+
+  .theme-controls {
+    grid-template-columns: 86px minmax(0, 1fr);
+  }
+
+  #themeSelect {
+    width: 100%;
+  }
+
+  .transliterator-controls {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  #modeSelect {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .button-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .button-group .control-button {
+    width: 100%;
+    white-space: normal;
+    line-height: 1.15;
+  }
+
+  .instructions p,
+  .notes p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .text-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .textarea-card {
+    min-height: 0;
+    margin-bottom: 0;
+  }
+
+  textarea {
+    min-height: 34vh;
+    max-height: 48vh;
+    resize: vertical;
+    padding: 12px;
+    line-height: 1.45;
+  }
+}
+
+/* Very narrow portrait phones. */
+@media (max-width: 420px) and (orientation: portrait) {
+  .app {
+    padding: 10px;
+  }
+
+  .title-block h1 {
+    font-size: 20px;
+  }
+
+  .card h2 {
+    font-size: 15px;
+  }
+
+  .button-group {
+    grid-template-columns: 1fr;
+  }
+
+  textarea {
+    min-height: 32vh;
+  }
+}
+
+/* Landscape phones/small tablets: keep the useful side-by-side text boxes. */
+@media (max-width: 950px) and (orientation: landscape) {
+  .app {
+    max-width: none;
+    padding: 10px 12px;
+  }
+
+  .header {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .title-block {
+    flex: 1 1 360px;
+    min-width: 260px;
+  }
+
+  .title-block h1 {
+    font-size: 20px;
+  }
+
+  #subtitle {
+    font-size: 12px;
+  }
+
+  .header-actions {
+    align-items: flex-end;
+    width: auto;
+  }
+
+  .theme-controls {
+    grid-template-columns: auto 120px;
+    width: auto;
+  }
+
+  .card {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .card h2 {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  .transliterator-controls {
+    grid-template-columns: minmax(220px, 1fr) auto auto;
+    gap: 10px;
+    align-items: end;
+  }
+
+  #modeSelect {
+    min-width: 0;
+  }
+
+  .button-group {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    min-width: 118px;
+  }
+
+  .control-button,
+  select {
+    min-height: 38px;
+  }
+
+  .instructions p,
+  .notes p {
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .text-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .textarea-card {
+    min-height: 0;
+  }
+
+  textarea {
+    min-height: 210px;
+    height: calc(100vh - 320px);
+    max-height: 420px;
+  }
+}
+
+/* Short landscape screens need a little less vertical chrome. */
+@media (max-width: 950px) and (orientation: landscape) and (max-height: 480px) {
+  .instructions {
+    display: none;
+  }
+
+  textarea {
+    height: calc(100vh - 230px);
+    min-height: 170px;
+  }
+}
