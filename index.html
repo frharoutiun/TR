@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("trTheme") || "system";
+        var systemDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var effective = saved === "dark" || (saved === "system" && systemDark) ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", saved);
+        document.documentElement.setAttribute("data-effective-theme", effective);
+      } catch (error) {
+        document.documentElement.setAttribute("data-theme", "system");
+        document.documentElement.setAttribute("data-effective-theme", "light");
+      }
+    }());
+  </script>
+  <title>TR Armenian Transliterator</title>
+  <link rel="stylesheet" href="styles-v4.css?v=2026-04-25-download-align">
+</head>
+<body>
+  <main class="app transliterator-app">
+    <header class="header">
+      <div class="title-block">
+        <h1>TR Armenian Transliterator</h1>
+        <p id="subtitle">Armenian encoding and transliteration converter</p>
+      </div>
+
+      <div class="header-actions">
+        <div class="theme-controls" aria-label="Color theme controls">
+          <label for="themeSelect">Theme</label>
+          <select id="themeSelect" aria-label="Choose color theme">
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <section class="card controls-card" aria-labelledby="controls-heading">
+      <h2 id="controls-heading">Conversion Controls</h2>
+      <div class="transliterator-controls">
+        <div class="mode-control">
+          <label for="modeSelect">Mode</label>
+          <select id="modeSelect" class="control">
+  <option value="unicode > maroon book">unicode > maroon book</option>
+  <option value="unicode > HM-ISO9985">unicode > HM-ISO9985</option>
+  <option value="arafi > unicode">arafi > unicode</option>
+  <option value="ardahan > unicode">ardahan > unicode</option>
+  <option value="armscii-7 > unicode">armscii-7 > unicode</option>
+  <option value="armscii-8 > armscii-8a">armscii-8 > armscii-8a</option>
+  <option value="armscii-8 > unicode">armscii-8 > unicode</option>
+  <option value="armscii-8a > unicode">armscii-8a > unicode</option>
+  <option value="buttero > unicode">buttero > unicode</option>
+  <option value="eznik > unicode">eznik > unicode</option>
+  <option value="haicanus > unicode">haicanus > unicode</option>
+  <option value="laserarm > unicode">laserarm > unicode</option>
+  <option value="lfc > unicode">lfc > unicode</option>
+  <option value="lfc-new > unicode">lfc-new > unicode</option>
+  <option value="lfc-next > lfc">lfc-next > lfc</option>
+  <option value="lfc-next > unicode">lfc-next > unicode</option>
+  <option value="macarm > unicode">macarm > unicode</option>
+  <option value="nork > unicode">nork > unicode</option>
+  <option value="olympia7 > unicode">olympia7 > unicode</option>
+  <option value="tstext > unicode">tstext > unicode</option>
+  <option value="yerevan > unicode">yerevan > unicode</option>
+</select>
+        </div>
+
+        <div class="button-group" aria-label="Run and clear controls">
+          <button id="runButton" class="control-button primary" type="button">Run</button>
+          <button id="clearButton" class="control-button" type="button">Clear</button>
+        </div>
+
+        <div class="button-group" aria-label="Download controls">
+          <button id="downloadTxtButton" class="control-button" type="button">Download .TXT</button>
+          <button id="downloadDocButton" class="control-button" type="button">Download .DOC</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card instructions" aria-labelledby="instructions-heading">
+      <h2 id="instructions-heading">Instructions</h2>
+      <p>
+        1) Select the source and target encoding languages from the drop-down menu.<br>
+        2) Paste source text in the source box.<br>
+        3) Click Run and the transliterated result will appear in the target box.<br>
+        4) Use Copy to place the target text on your clipboard, or Download to save the result as a .txt or .doc file.
+      </p>
+    </section>
+
+    <section class="text-grid" aria-label="Source and target text areas">
+      <div class="card textarea-card source-card">
+        <div class="textarea-header">
+          <label for="inputText">Source</label>
+          <span class="textarea-header-spacer" aria-hidden="true"></span>
+        </div>
+        <textarea id="inputText" placeholder="Paste source text here..."></textarea>
+      </div>
+      <div class="card textarea-card target-card">
+        <div class="textarea-header">
+          <label for="outputText">Target</label>
+          <button id="copyButton" class="control-button compact copy-button" type="button">Copy</button>
+        </div>
+        <textarea id="outputText" readonly placeholder="Result appears here..."></textarea>
+      </div>
+    </section>
+
+    <section class="card notes" aria-labelledby="notes-heading">
+      <h2 id="notes-heading">Notes</h2>
+      <p>Please send any feedback regarding the accuracy or functionality of this applet to Fr. Haroutiun Sabounjian at frharoutiun@gmail.com.</p>
+    </section>
+  </main>
+
+  <nav class="mobile-action-bar" aria-label="Mobile conversion actions">
+    <button id="mobileRunButton" class="control-button primary" type="button">Run</button>
+    <button id="mobileCopyButton" class="control-button" type="button">Copy</button>
+    <button id="mobileClearButton" class="control-button" type="button">Clear</button>
+    <button id="mobileDownloadTxtButton" class="control-button" type="button">TXT</button>
+    <button id="mobileDownloadDocButton" class="control-button" type="button">DOC</button>
+  </nav>
+
+  <script src="app-v4.js?v=2026-04-25-download-align"></script>
+</body>
+</html>

@@ -1,0 +1,387 @@
+html:root {
+  --background: rgb(245, 247, 250);
+  --card-background: white;
+  --header-text: rgb(35, 45, 60);
+  --muted-text: rgb(95, 105, 120);
+  --accent: rgb(49, 97, 150);
+  --grid: rgb(224, 229, 235);
+  --info-bg: rgb(238, 244, 252);
+  --info-border: rgb(190, 210, 235);
+  --row-alt: rgb(248, 250, 253);
+  --table-header: rgb(232, 237, 244);
+  --field-background: white;
+  --button-background: rgb(239, 239, 239);
+  --tile-background: rgb(250, 252, 255);
+  color-scheme: light;
+}
+
+html[data-effective-theme="dark"],
+html.theme-dark {
+  --background: rgb(20, 24, 31);
+  --card-background: rgb(31, 37, 47);
+  --header-text: rgb(235, 239, 245);
+  --muted-text: rgb(180, 190, 204);
+  --accent: rgb(142, 188, 238);
+  --grid: rgb(70, 80, 96);
+  --info-bg: rgb(43, 57, 76);
+  --info-border: rgb(86, 111, 143);
+  --row-alt: rgb(38, 45, 57);
+  --table-header: rgb(50, 60, 76);
+  --field-background: rgb(24, 29, 37);
+  --button-background: rgb(43, 51, 65);
+  --tile-background: rgb(36, 43, 55);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; min-height: 100%; }
+
+body {
+  background: var(--background);
+  color: var(--header-text);
+  font-family: "Noto Sans Armenian", "Noto Sans", "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.app {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 18px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.title-block { flex: 1 1 420px; min-width: 260px; }
+.title-block h1 { margin: 0; font-size: 24px; font-weight: 700; }
+#subtitle { margin: 2px 0 0; color: var(--muted-text); font-size: 13px; }
+
+.header-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.theme-controls {
+  display: grid;
+  grid-template-columns: auto 115px;
+  gap: 8px;
+  align-items: center;
+}
+
+.theme-controls label,
+.mode-control label {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+select,
+textarea,
+button {
+  font-family: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+select {
+  height: 32px;
+  border: 1px solid rgb(170, 178, 188);
+  background: var(--field-background);
+  color: var(--header-text);
+  font: inherit;
+  font-size: 13px;
+  padding: 0 28px 0 8px;
+  border-radius: 2px;
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted-text) 50%), linear-gradient(135deg, var(--muted-text) 50%, transparent 50%);
+  background-position: calc(100% - 14px) 13px, calc(100% - 9px) 13px;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+.card {
+  background: var(--card-background);
+  border: 1px solid var(--grid);
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+.card h2 { font-size: 16px; margin: 0 0 12px; }
+
+.transliterator-controls {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) auto auto;
+  gap: 16px;
+  align-items: end;
+}
+
+.mode-control { display: grid; gap: 6px; }
+#modeSelect { width: 100%; min-width: 240px; }
+
+.button-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  min-width: 130px;
+}
+
+.control-button {
+  height: 32px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  background: var(--button-background);
+  color: var(--header-text);
+  border: 1px solid var(--grid);
+  border-radius: 2px;
+  padding: 0 12px;
+}
+
+.control-button.primary {
+  background: var(--info-bg);
+  color: var(--accent);
+  border-color: var(--info-border);
+}
+
+.instructions p,
+.notes p {
+  margin: 0;
+  color: var(--muted-text);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.text-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.textarea-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 520px;
+  margin-bottom: 0;
+}
+
+.textarea-card label {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--header-text);
+}
+
+.textarea-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 40px;
+  margin-bottom: 8px;
+}
+
+.textarea-header label {
+  margin-bottom: 0;
+}
+
+.textarea-header-spacer {
+  width: 64px;
+  min-width: 64px;
+  height: 30px;
+  display: inline-block;
+}
+
+.control-button.compact {
+  height: 30px;
+  min-height: 30px;
+  padding: 0 12px;
+  font-size: 12px;
+}
+
+.copy-button.copied,
+.mobile-action-bar .copied {
+  background: var(--info-bg);
+  color: var(--accent);
+  border-color: var(--info-border);
+}
+
+.mobile-action-bar {
+  display: none;
+}
+
+textarea {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 460px;
+  resize: vertical;
+  border: 1px solid var(--grid);
+  background: var(--field-background);
+  color: var(--header-text);
+  font-family: "Noto Sans Armenian", "Noto Sans", "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+  padding: 12px;
+  border-radius: 2px;
+}
+
+textarea::placeholder { color: var(--muted-text); opacity: 0.8; }
+
+.version-marker {
+  color: var(--muted-text);
+  font-size: 11px;
+  text-align: right;
+  margin-top: -4px;
+  padding-bottom: 8px;
+}
+
+@media (max-width: 820px) {
+  body { padding-bottom: 116px; }
+  .header { align-items: flex-start; flex-direction: column; }
+  .header-actions { align-items: flex-start; width: 100%; }
+  .transliterator-controls { grid-template-columns: 1fr; align-items: stretch; }
+  .button-group { grid-template-columns: repeat(2, minmax(0, 1fr)); min-width: 0; }
+  .text-grid { grid-template-columns: 1fr; }
+  .textarea-card { min-height: 380px; }
+  textarea { min-height: 320px; }
+
+  .control-button.compact {
+    min-height: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .mobile-action-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    display: grid;
+    grid-template-columns: 1.25fr 1fr 1fr 0.85fr 0.85fr;
+    gap: 8px;
+    padding: 10px max(10px, env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-right));
+    background: var(--card-background);
+    border-top: 1px solid var(--grid);
+    box-shadow: 0 -8px 22px rgba(0, 0, 0, 0.14);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  .mobile-action-bar .control-button {
+    height: 46px;
+    min-height: 46px;
+    padding: 0 8px;
+  }
+}
+
+@media (max-width: 520px) {
+  body { padding-bottom: 132px; }
+  .app { padding: 12px; }
+  .title-block h1 { font-size: 21px; }
+  .theme-controls { grid-template-columns: auto 1fr; width: 100%; }
+  #themeSelect { width: 100%; }
+  .button-group { grid-template-columns: 1fr; }
+
+  .textarea-header {
+    min-height: 38px;
+  }
+
+  .textarea-header-spacer {
+    width: 68px;
+    min-width: 68px;
+    height: 40px;
+  }
+
+  .mobile-action-bar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .mobile-action-bar #mobileDownloadTxtButton,
+  .mobile-action-bar #mobileDownloadDocButton {
+    grid-column: span 1;
+  }
+}
+
+
+/* Phone portrait: make source work less top-heavy and keep the action buttons reachable. */
+@media (max-width: 520px) and (orientation: portrait) {
+  .instructions {
+    display: none;
+  }
+
+  .textarea-card {
+    min-height: auto;
+  }
+
+  .textarea-card textarea {
+    min-height: 38vh;
+  }
+
+  .target-card textarea {
+    min-height: 32vh;
+  }
+
+  .text-grid {
+    gap: 12px;
+  }
+}
+
+/* Phone landscape: keep the two text boxes side by side when there is enough width,
+   while retaining the bottom Run/Copy/Clear bar for easy thumb access. */
+@media (max-height: 520px) and (orientation: landscape) and (min-width: 700px) {
+  .instructions {
+    display: none;
+  }
+
+  .text-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .textarea-card {
+    min-height: 250px;
+  }
+
+  textarea {
+    min-height: 210px;
+  }
+
+  .app {
+    padding-bottom: 12px;
+  }
+}
+
+
+/* Portrait phones: keep the primary action obvious, with downloads available without scrolling. */
+@media (max-width: 520px) and (orientation: portrait) {
+  .mobile-action-bar {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .mobile-action-bar #mobileRunButton {
+    grid-column: span 2;
+  }
+
+  .mobile-action-bar #mobileCopyButton,
+  .mobile-action-bar #mobileClearButton,
+  .mobile-action-bar #mobileDownloadTxtButton,
+  .mobile-action-bar #mobileDownloadDocButton {
+    grid-column: span 1;
+  }
+}
+
+/* Landscape phones: keep the bar to one compact row so it does not steal vertical space. */
+@media (max-height: 520px) and (orientation: landscape) and (min-width: 700px) {
+  body { padding-bottom: 70px; }
+  .mobile-action-bar {
+    grid-template-columns: 1.25fr 1fr 1fr 0.85fr 0.85fr;
+  }
+}
